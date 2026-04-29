@@ -78,9 +78,8 @@ fn print_with_number(s: &String, n: i32) {
 
 fn problem_7() {
     println!("Problem 7: Lifetime extension");
-    let result;
     let s = String::from("inner scope");
-    result = &s;
+    let result = &s;
     println!("  Result: {}", result);
 }
 
