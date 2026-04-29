@@ -2,13 +2,16 @@
 use rand::Rng;
 
 pub fn generate_random(length: usize, use_symbols: bool) -> String {
-    let mut charset = String::from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+    let mut charset =
+        String::from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
     if use_symbols {
         charset.push_str("!@#$%^&*");
     }
     let chars: Vec<char> = charset.chars().collect();
     let mut rng = rand::thread_rng();
-    (0..length).map(|_| chars[rng.gen_range(0..chars.len())]).collect()
+    (0..length)
+        .map(|_| chars[rng.gen_range(0..chars.len())])
+        .collect()
 }
 
 pub fn generate_passphrase(word_count: usize, separator: char) -> String {
@@ -21,7 +24,9 @@ pub fn generate_passphrase(word_count: usize, separator: char) -> String {
 
 pub fn generate_pin(length: usize) -> String {
     let mut rng = rand::thread_rng();
-    (0..length).map(|_| rng.gen_range(0..10).to_string()).collect()
+    (0..length)
+        .map(|_| rng.gen_range(0..10).to_string())
+        .collect()
 }
 
 pub const WORD_LIST: &[&str] = &[
@@ -38,21 +43,33 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_random_correct_length() { assert_eq!(generate_random(12, false).len(), 12); }
+    fn test_random_correct_length() {
+        assert_eq!(generate_random(12, false).len(), 12);
+    }
     #[test]
     fn test_random_no_symbols_only_alphanumeric() {
-        assert!(generate_random(100, false).chars().all(|c| c.is_ascii_alphanumeric()));
+        assert!(generate_random(100, false)
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric()));
     }
     #[test]
     fn test_random_with_symbols_contains_valid_chars() {
         let valid: std::collections::HashSet<char> =
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*".chars().collect();
-        assert!(generate_random(100, true).chars().all(|c| valid.contains(&c)));
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
+                .chars()
+                .collect();
+        assert!(generate_random(100, true)
+            .chars()
+            .all(|c| valid.contains(&c)));
     }
     #[test]
-    fn test_random_length_one() { assert_eq!(generate_random(1, false).len(), 1); }
+    fn test_random_length_one() {
+        assert_eq!(generate_random(1, false).len(), 1);
+    }
     #[test]
-    fn test_passphrase_word_count() { assert_eq!(generate_passphrase(4, '-').split('-').count(), 4); }
+    fn test_passphrase_word_count() {
+        assert_eq!(generate_passphrase(4, '-').split('-').count(), 4);
+    }
     #[test]
     fn test_passphrase_separator() {
         let phrase = generate_passphrase(3, '_');
@@ -72,9 +89,15 @@ mod tests {
         assert!(WORD_LIST.contains(&phrase.as_str()));
     }
     #[test]
-    fn test_pin_correct_length() { assert_eq!(generate_pin(6).len(), 6); }
+    fn test_pin_correct_length() {
+        assert_eq!(generate_pin(6).len(), 6);
+    }
     #[test]
-    fn test_pin_only_digits() { assert!(generate_pin(20).chars().all(|c| c.is_ascii_digit())); }
+    fn test_pin_only_digits() {
+        assert!(generate_pin(20).chars().all(|c| c.is_ascii_digit()));
+    }
     #[test]
-    fn test_pin_length_one() { assert_eq!(generate_pin(1).len(), 1); }
+    fn test_pin_length_one() {
+        assert_eq!(generate_pin(1).len(), 1);
+    }
 }

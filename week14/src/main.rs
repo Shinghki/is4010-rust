@@ -37,9 +37,7 @@ enum Commands {
         length: usize,
     },
     /// Check the strength of a password.
-    Validate {
-        password: String,
-    },
+    Validate { password: String },
 }
 
 fn main() {
