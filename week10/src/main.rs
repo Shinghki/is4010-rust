@@ -106,19 +106,46 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_to_uppercase_owned() { let s = String::from("hello"); assert_eq!(to_uppercase_owned(s), "HELLO"); }
+    fn test_to_uppercase_owned() {
+        let s = String::from("hello");
+        assert_eq!(to_uppercase_owned(s), "HELLO");
+    }
     #[test]
-    fn test_to_uppercase_owned_already_upper() { let s = String::from("RUST"); assert_eq!(to_uppercase_owned(s), "RUST"); }
+    fn test_to_uppercase_owned_already_upper() {
+        let s = String::from("RUST");
+        assert_eq!(to_uppercase_owned(s), "RUST");
+    }
     #[test]
-    fn test_string_length() { let s = String::from("testing"); let len = string_length(&s); assert_eq!(len, 7); assert_eq!(s, "testing"); }
+    fn test_string_length() {
+        let s = String::from("testing");
+        let len = string_length(&s);
+        assert_eq!(len, 7);
+        assert_eq!(s, "testing");
+    }
     #[test]
-    fn test_string_length_empty() { let s = String::from(""); assert_eq!(string_length(&s), 0); }
+    fn test_string_length_empty() {
+        let s = String::from("");
+        assert_eq!(string_length(&s), 0);
+    }
     #[test]
-    fn test_append_suffix() { let mut s = String::from("hello"); append_suffix(&mut s, ", world"); assert_eq!(s, "hello, world"); }
+    fn test_append_suffix() {
+        let mut s = String::from("hello");
+        append_suffix(&mut s, ", world");
+        assert_eq!(s, "hello, world");
+    }
     #[test]
-    fn test_append_suffix_empty() { let mut s = String::from(""); append_suffix(&mut s, "hi"); assert_eq!(s, "hi"); }
+    fn test_append_suffix_empty() {
+        let mut s = String::from("");
+        append_suffix(&mut s, "hi");
+        assert_eq!(s, "hi");
+    }
     #[test]
-    fn test_concat_strings() { assert_eq!(concat_strings("hello", " world"), "hello world"); }
+    fn test_concat_strings() {
+        assert_eq!(concat_strings("hello", " world"), "hello world");
+    }
     #[test]
-    fn test_concat_strings_empty() { assert_eq!(concat_strings("", "abc"), "abc"); assert_eq!(concat_strings("abc", ""), "abc"); }
+    fn test_concat_strings_empty() {
+        assert_eq!(concat_strings("", "abc"), "abc");
+        assert_eq!(concat_strings("abc", ""), "abc");
+    }
 }
